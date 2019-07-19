@@ -35,6 +35,24 @@ const App = () => {
     })    
   },[pageNo]);
 
+  const prevPage = ()=>{
+    let tmp = pageNo;
+    tmp --;
+    if(tmp<1)
+      tmp = 8;
+
+    setPageNo(tmp);
+
+  };
+
+  const nextPage = ()=>{
+    let tmp = pageNo;
+    tmp ++;
+    if(tmp>8)
+      tmp = 1;
+
+    setPageNo(tmp);
+  };
 
 
   return (
@@ -43,12 +61,14 @@ const App = () => {
       <Grid container spacing={2} justify='center' alignItems='center'>
         {people.map((person,i)=>{
           return (
-            <Grid item xs={6} sm={3}>
-              <PersonCard data={person}/>
+            <Grid item xs={6} sm={3} key={i}>
+              <PersonCard data={person} key={i}/>
             </Grid>
           )
         })}
       </Grid>
+      <button onClick={prevPage}>Prev</button>
+      <button onClick={nextPage}>Next</button>
     </div>
   );
 }
